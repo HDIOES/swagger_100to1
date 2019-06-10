@@ -20,6 +20,93 @@ tags:
 schemes:
 - "https"
 - "http"
+paths:	
+  /game:	
+    post:	
+      tags:	
+      - "game"	
+      summary: "Добавляет новую игру"	
+      description: ""	
+      operationId: "addGame"	
+      consumes:	
+      - "application/json"	
+      produces:	
+      - "application/json"	
+      parameters:	
+      - in: "body"	
+        name: "body"	
+        description: "Объект игры, который будет сохранён в базу данных"	
+        required: true	
+        schema:	
+          $ref: "#/definitions/Game"	
+      responses:	
+        405:	
+          description: "Invalid input"
+    put:	
+      tags:	
+      - "game"	
+      summary: "Обновляет существующую игру"	
+      description: ""	
+      operationId: "updateGame"	
+      consumes:	
+      - "application/json"	
+      produces:	
+      - "application/json"	
+      parameters:	
+      - in: "body"	
+        name: "body"	
+        description: "Объект игры, который будет обновлён"	
+        required: true	
+        schema:	
+          $ref: "#/definitions/Game"	
+      responses:	
+        405:	
+          description: "Invalid input"
+    get:	
+      tags:	
+      - "game"	
+      summary: "Получение игры по его id"	
+      description: ""	
+      operationId: "getGame"	
+      consumes:	
+      - "application/json"	
+      produces:	
+      - "application/json"	
+      parameters:	
+      - in: "query"	
+        name: "id"	
+        type: "integer"
+        description: "Объект игры, который будет получен"	
+        required: true
+      responses:	
+        405:	
+          description: "Invalid input"
+        200:
+          description: "OK"
+          schema:	
+            type: "object"	
+            items:	
+              $ref: "#/definitions/Game"
+    delete:
+      tags:	
+      - "game"	
+      summary: "Удаление игры по его id"	
+      description: ""	
+      operationId: "deleteGame"	
+      consumes:	
+      - "application/json"	
+      produces:	
+      - "application/json"	
+      parameters:	
+      - in: "path"	
+        name: "id"	
+        type: "integer"
+        description: "Объект игры, который будет удалён"	
+        required: true
+      responses:	
+        405:	
+          description: "Invalid input"
+
 securityDefinitions:
   petstore_auth:
     type: "oauth2"
