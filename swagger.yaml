@@ -20,8 +20,39 @@ tags:
 schemes:
 - "https"
 - "http"
-paths:	
-  /game:	
+paths:
+  /games:
+    get:
+      tags:
+      - "game"
+      summary: "Чтение списка игр с пагинацией"
+      description: ""
+      consumes:	
+      - "application/json"	
+      produces:	
+      - "application/json"	
+      parameters:	
+      - in: "query"	
+        name: "limit"
+        type: "integer"
+        description: "Количество игр на одной странице"	
+        required: false
+      - in: "query"	
+        name: "offset"
+        type: "integer"
+        description: "Смещение позиции относительно начала"	
+        required: false
+      responses:	
+        405:	
+          description: "Invalid input"
+        200:
+          description: "OK"
+          schema:	
+            type: "object"	
+            items:	
+              $ref: "#/definitions/Game"  
+      
+  /game: 	
     post:	
       tags:	
       - "game"	
@@ -84,9 +115,7 @@ paths:
         200:
           description: "OK"
           schema:	
-            type: "object"	
-            items:	
-              $ref: "#/definitions/Game"
+            $ref: "#/definitions/Game"
     delete:
       tags:	
       - "game"	
